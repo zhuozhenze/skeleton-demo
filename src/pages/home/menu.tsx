@@ -16,19 +16,19 @@ const menu: MenuType[] = [
     key: "profile",
     icon: <UserOutlined />,
     label: "profile",
-    path: "/profile",
+    path: "/home/profile",
   },
   {
     key: "video",
     icon: <VideoCameraOutlined />,
     label: "video",
-    path: "/video",
+    path: "/home/video",
   },
   {
     key: "upload",
     icon: <UploadOutlined />,
     label: "upload",
-    path: "/upload",
+    path: "/home/upload",
   },
 ];
 

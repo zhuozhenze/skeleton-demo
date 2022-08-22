@@ -1,31 +1,29 @@
-import { Routes, Route } from "react-router-dom";
-import { RouteProps } from "react-router-dom";
+import React from "react";
+import { RouteObject, useRoutes, Navigate } from "react-router-dom";
+import lazyLoad from "./utils/lazyLoad";
 import HomePage from "@pages/home";
 import NotFoundPage from "@pages/404";
-import ProfilePage from "@pages/profile";
-import VideoPage from "@pages/video";
-import UploadPage from "@pages/upload";
 
-interface RouteType extends RouteProps {
-  childRoute?: RouteType[];
-}
-
-const routeList: RouteType[] = [
+const routeList: RouteObject[] = [
   {
     path: "/",
+    element: <Navigate to="/home/profile" />,
+  },
+  {
+    path: "/home",
     element: <HomePage />,
-    childRoute: [
+    children: [
       {
         path: "profile",
-        element: <ProfilePage />,
+        element: lazyLoad(React.lazy(() => import("@pages/profile"))),
       },
       {
         path: "video",
-        element: <VideoPage />,
+        element: lazyLoad(React.lazy(() => import("@pages/video"))),
       },
       {
         path: "upload",
-        element: <UploadPage />,
+        element: lazyLoad(React.lazy(() => import("@pages/upload"))),
       },
     ],
   },
@@ -35,25 +33,9 @@ const routeList: RouteType[] = [
   },
 ];
 
-const HOCRoute = (props: RouteType) => {
-  return (
-    <Route {...props}>
-      {props.childRoute &&
-        props.childRoute.map((child, index) => {
-          return <HOCRoute key={child.path || index} {...child} />;
-        })}
-    </Route>
-  );
-};
-
 const Router = () => {
-  return (
-    <Routes>
-      {routeList.map((props) => {
-        return HOCRoute(props);
-      })}
-    </Routes>
-  );
+  const Router = useRoutes(routeList);
+  return Router;
 };
 
 export default Router;

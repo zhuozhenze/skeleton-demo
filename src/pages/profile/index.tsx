@@ -1,7 +1,13 @@
 import React from "react";
+import Counter from "./counter";
 
 const ProfilePage = () => {
-  return <div> this is profile page</div>;
+  return (
+    <div>
+      <div>this is the profile page</div>
+      <Counter />
+    </div>
+  );
 };
 
 export default ProfilePage;

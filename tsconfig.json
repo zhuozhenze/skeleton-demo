@@ -25,7 +25,11 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@pages/*": ["./src/pages/*"]
+      "@/*": ["./src/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@slices/*": ["src/slices/*"],
+      "@api/*": ["./src/api/*"]
     }
   },
   "include": ["src"]
