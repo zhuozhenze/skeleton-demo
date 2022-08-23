@@ -3,7 +3,7 @@ import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import menu from "./menu";
-import styles from "./index.less";
+import styles from "./index.module.less";
 
 const { Header, Sider, Content } = Layout;
 
